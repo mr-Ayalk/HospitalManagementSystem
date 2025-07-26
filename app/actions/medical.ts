@@ -8,7 +8,9 @@ import {
   PaymentSchema,
 } from "@/lib/schema";
 import { checkRole } from "@/utils/roles";
-
+function generateReceiptNumber(): number {
+  return Math.floor(100000 + Math.random() * 900000);
+}
 export const addDiagnosis = async (
   data: DiagnosisFormData,
   appointmentId: string
@@ -81,6 +83,17 @@ export async function addNewBill(data: any) {
       });
 
       if (!info?.bills?.length) {
+        // bill_info = await db.payment.create({
+        //   data: {
+        //     appointment_id: Number(data?.appointment_id),
+        //     patient_id: info?.patient_id!,
+        //     bill_date: new Date(),
+        //     payment_date: new Date(),
+        //     discount: 0.0,
+        //     amount_paid: 0.0,
+        //     total_amount: 0.0,
+        //   },
+        // });
         bill_info = await db.payment.create({
           data: {
             appointment_id: Number(data?.appointment_id),
@@ -90,6 +103,7 @@ export async function addNewBill(data: any) {
             discount: 0.0,
             amount_paid: 0.0,
             total_amount: 0.0,
+            receipt_number: generateReceiptNumber(),
           },
         });
       } else {
