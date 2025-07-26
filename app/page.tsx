@@ -19,7 +19,7 @@ export default async function Home() {
           <h1 className="text-4xl md:text-5xl font-bold text-center">
             Welcome to <br />
             <span className="text-blue-700 text-5xl md:text-6xl">
-              Kinda HMS
+              Shalom Health Care Center
             </span>
           </h1>
         </div>
